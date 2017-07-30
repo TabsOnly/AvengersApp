@@ -4,11 +4,31 @@
              x:Class="Avengers.ResultsPage">
     <ContentPage.Content>
         <StackLayout Margin="20" HorizontalOptions="Center" VerticalOptions="Center">
-
             <Label  Text="You sure do look like:" HorizontalTextAlignment="Center"/>
             <Label  Text=" " x:Name="ResultLabel" FontSize="Large" HorizontalTextAlignment="Center"/>
-            <Button Text="Count" Clicked="ICountAvengerRecord" />
-            
+            <Button Text="SEE RECORDS" Clicked="ICountAvengerRecord" />
+            <ListView x:Name="CountList" HasUnevenRows="true">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50*" />
+                                    <ColumnDefinition Width="50*" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Column="0" Text="{Binding name}" Margin="20,0,0,0"/>
+                                <StackLayout Grid.Column="1" Orientation="Vertical" Margin="0,0,20,0">
+                                    <Label Text="{Binding count, StringFormat='Count: {0:N}'}" HorizontalTextAlignment="End"/>
+                                </StackLayout>
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
+
     </ContentPage.Content>
 </ContentPage>

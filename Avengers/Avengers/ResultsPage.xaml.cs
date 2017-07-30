@@ -25,13 +25,13 @@ namespace Avengers
         {
             var table = await IStatsManager.IAzureManagerInstance.IGetAvengerRecords();
 
-            List<AvengerCount> countlist = table.GroupBy((g => g.name), (name, elements) => new AvengerCount
+            List<AvengerCount> countlist = table.GroupBy((g => g.supername), (name, elements) => new AvengerCount
             {
-                name = name,
+                name = supername,
                 count = elements.Distinct().Count()
             }).ToList();
 
-            await DisplayAlert("COUNTS", countlist[0].name + "'s count is " + countlist[0].count.ToString(), "Ok");
+            CountList.ItemsSource = countlist;
         }
 
     }

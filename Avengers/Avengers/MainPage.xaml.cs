@@ -21,7 +21,6 @@ namespace Avengers
         public MainPage()
         {
             InitializeComponent();
-            //this.isLoading = false;
         }
 
         private async void ILoadCamera(object sender, EventArgs e)
@@ -44,14 +43,14 @@ namespace Avengers
             if (file == null)
                 return;
 
-            loadingcircle.IsVisible = true;
+            loadingcircle.IsRunning = true;
 
             if(await IDetectFaceRequest(file))
             {
                 analyseButton.IsVisible = true;
             }
             
-            loadingcircle.IsVisible = false;    
+            loadingcircle.IsRunning = false;    
 
             file.Dispose();
 
@@ -142,7 +141,7 @@ namespace Avengers
                     string personid = responseModel[0].candidates[0].personId;
 
 
-                    return await AddToRecordTable(personid);
+                    return await IAddToRecordTable(personid);
                 }
 
                 return null;
@@ -150,7 +149,7 @@ namespace Avengers
 
         }
 
-        private async Task<string> AddToRecordTable(string personid)
+        private async Task<string> IAddToRecordTable(string personid)
         {
          string newRecordName = await IStatsManager.IAzureManagerInstance.IGetAvengerName(personid);
          string newSuperName = await IStatsManager.IAzureManagerInstance.IGetAvengerSuperName(personid);
@@ -165,9 +164,9 @@ namespace Avengers
 
         private async void INavigateResultsPage(object sender, EventArgs e)
         {
-            loadingcircle.IsVisible = true;
+            loadingcircle.IsRunning = true;
             string supername =  await ICompareFaceRequest(detectedFaceId);
-            loadingcircle.IsVisible = false;
+            loadingcircle.IsRunning = false;
             await Navigation.PushAsync(new ResultsPage(supername));
         }
     }
