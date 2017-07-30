@@ -2,18 +2,24 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Avengers.ResultsPage">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness" iOS="0, 20, 0, 0" />
+    </ContentPage.Padding>
     <ContentPage.Content>
-        <StackLayout Margin="20" HorizontalOptions="Center" VerticalOptions="Center">
-            
-            <Label  Text="You sure do look like:" HorizontalTextAlignment="Center"/>
-            
-            <Label  Text=" " x:Name="ResultLabel" FontSize="Large" HorizontalTextAlignment="Center"/>
+        <StackLayout Margin="20" HorizontalOptions="Center" VerticalOptions="Center" >
+
+            <Label  Text="You sure do look like:" 
+                    HorizontalTextAlignment="Center" TextColor="White"/>
+
+            <Label  Text=" " x:Name="ResultLabel" FontSize="Large" 
+                    HorizontalTextAlignment="Center" TextColor="White" FontAttributes="Bold"/>
+
+            <Button Text="SEE STATS" Clicked="ICountAvengerRecord" 
+                    BackgroundColor="White" TextColor="Black" Margin="20"  FontAttributes="Bold"/>
             
             <ActivityIndicator x:Name="loadingcircle" IsRunning="False" Color="Red" VerticalOptions="End"/>
             
-            <Button Text="SEE STATS" Clicked="ICountAvengerRecord" />
-            
-            <ListView x:Name="CountList" HasUnevenRows="true">
+            <ListView x:Name="CountList" HasUnevenRows="true" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -25,9 +31,9 @@
                                     <ColumnDefinition Width="50*" />
                                     <ColumnDefinition Width="50*" />
                                 </Grid.ColumnDefinitions>
-                                <Label Grid.Column="0" Text="{Binding name}" Margin="20,0,0,0"/>
+                                <Label Grid.Column="0" Text="{Binding name}" TextColor="White" Margin="20,0,0,0"/>
                                 <StackLayout Grid.Column="1" Orientation="Vertical" Margin="0,0,20,0">
-                                    <Label Text="{Binding count, StringFormat='Count: {0:N}'}" HorizontalTextAlignment="End"/>
+                                    <Label Text="{Binding count, StringFormat='Count: {0}'}" TextColor="White" HorizontalTextAlignment="End"/>
                                 </StackLayout>
                             </Grid>
                         </ViewCell>

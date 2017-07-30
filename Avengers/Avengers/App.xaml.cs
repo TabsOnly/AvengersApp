@@ -13,7 +13,9 @@ namespace Avengers
         {
             InitializeComponent();
 
-            MainPage = new NavigationPage(new MainPage());
+             MainPage = new NavigationPage(new MainPage() { Title = "Avenger Match App", BackgroundColor = Color.Black})
+                                                            { BarBackgroundColor = Color.DarkRed};
+
         }
 
         protected override void OnStart()

@@ -50,11 +50,20 @@ namespace Avengers
             loadingcircle.IsRunning = true;
 
             // Only reveal analyse button if the face detection 
-            // returned true
+            // returned true.Gives option to take another photo
+            // and needs to set analyse to false in case next photo
+            // is invalid.
             if(await IDetectFaceRequest(file))
             {
                 analyseButton.IsVisible = true;
+                loadButton.Text = "TAKE ANOTHER PHOTO";
             }
+            else
+            {
+                analyseButton.IsVisible = false;
+            }
+            
+
 
             // stop loading
             loadingcircle.IsRunning = false;    
@@ -211,7 +220,7 @@ namespace Avengers
             loadingcircle.IsRunning = false;
 
             // pushs on new results page and passes in the avenger look alike
-            await Navigation.PushAsync(new ResultsPage(supername));
+            await Navigation.PushAsync(new ResultsPage(supername) { BackgroundColor = Color.Black});
         }
     }
 }

@@ -3,13 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Avengers"
              x:Class="Avengers.MainPage">
-    <StackLayout Orientation="Vertical"  Margin=" 20">
-        <StackLayout VerticalOptions="Center" Padding="30">
-            <Button Text="TAKE PHOTO" Clicked="ILoadCamera" />
-            <Button x:Name="analyseButton" Text="ANALYSE" Clicked ="INavigateResultsPage" IsVisible="False"/>
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness" iOS="0, 20, 0, 0" />
+    </ContentPage.Padding>
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical"  Margin=" 20">
+            <Label Text="Start by taking a photo of a face, then press the Analyse button to return which Avenger best matches the face" 
+                     HorizontalTextAlignment="Start" TextColor="White"/>
+            <StackLayout VerticalOptions="Center">
+                <Button x:Name="loadButton" Text="TAKE PHOTO" Clicked="ILoadCamera"
+                         IsVisible="True" TextColor="Black" FontAttributes="Bold" BackgroundColor="White" Margin="20"/>
+                <Button x:Name="analyseButton" Text="ANALYSE PHOTO" Clicked ="INavigateResultsPage" IsVisible="False" 
+                        BackgroundColor="White" TextColor="Black" Margin="20"  FontAttributes="Bold"/>
+            </StackLayout>
+            <StackLayout Orientation="Vertical" VerticalOptions="End" Padding="30">
+                <ActivityIndicator x:Name="loadingcircle" IsRunning="False" Color="Red" VerticalOptions="End"/>
+            </StackLayout>
         </StackLayout>
-        <StackLayout Orientation="Vertical" VerticalOptions="End" Padding="30">
-            <ActivityIndicator x:Name="loadingcircle" IsRunning="False" Color="Red" VerticalOptions="End"/>
-        </StackLayout>
-    </StackLayout>
+    </ContentPage.Content>
 </ContentPage>
