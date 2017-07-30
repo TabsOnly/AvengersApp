@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Avengers.ResultsPage">
+    <ContentPage.Content>
+        <StackLayout Margin="20" HorizontalOptions="Center" VerticalOptions="Center">
+
+            <Label  Text="You sure do look like:" HorizontalTextAlignment="Center"/>
+            <Label  Text=" " x:Name="ResultLabel" FontSize="Large" HorizontalTextAlignment="Center"/>
+            <Button Text="Count" Clicked="ICountAvengerRecord" />
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

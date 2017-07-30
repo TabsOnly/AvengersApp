@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Avengers"
+             x:Class="Avengers.MainPage">
+
+
+
+        <StackLayout Orientation="Vertical">
+                    
+                    <Button Text="TAKE PHOTO" Clicked="ILoadCamera" />
+
+                    <Button x:Name="analyseButton" Text="ANALYSE" Clicked ="INavigateResultsPage" IsVisible="False"/>
+
+                    <ActivityIndicator x:Name="loadingcircle" IsRunning="True" IsVisible="False" Color="Red"/>
+        </StackLayout>
+
+</ContentPage>
