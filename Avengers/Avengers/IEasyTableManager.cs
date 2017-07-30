@@ -7,15 +7,19 @@ using System.Linq;
 
 namespace Avengers
 {
-    public class IStatsManager
+    public class IEasyTableManager
     {
-        private static IStatsManager instance;
+        /*  This class deals with accessing Easy Tables stored on Azure*/
+
+        private static IEasyTableManager instance;
         private MobileServiceClient client;
         private IMobileServiceTable<AvengerRecordTable> avengerRecordTable;
         private IMobileServiceTable<AvengerIdTable> avengerIdTable;
 
-        private IStatsManager()
+        private IEasyTableManager()
         {
+            // initialises client to point to endpoint where relevant easy tables are stored
+            // and grabs tables
             this.client = new MobileServiceClient("https://avenger.azurewebsites.net");
             this.avengerRecordTable = this.client.GetTable<AvengerRecordTable>();
             this.avengerIdTable = this.client.GetTable<AvengerIdTable>();
@@ -26,13 +30,13 @@ namespace Avengers
             get { return client; }
         }
 
-        public static IStatsManager IAzureManagerInstance
+        public static IEasyTableManager IAzureManagerInstance
         {
             get
             {
                 if (instance == null)
                 {
-                    instance = new IStatsManager();
+                    instance = new IEasyTableManager();
                 }
                 return instance;
             }
@@ -40,12 +44,15 @@ namespace Avengers
 
         public async Task<List<AvengerRecordTable>> IGetAvengerRecords()
         {
+            // returns table of records
             return await this.avengerRecordTable.ToListAsync();
         }
 
         public async Task<string> IGetAvengerName(string personid)
         {
-            var table=  await this.avengerIdTable.ToListAsync();
+            // returns name of an avenger based on personId passed in
+            // searchs AvengerIdTable to find name
+            var table =  await this.avengerIdTable.ToListAsync();
 
             AvengerIdTable entry = table.Find(x => x.personId == personid);
 
@@ -54,6 +61,8 @@ namespace Avengers
 
         public async Task<string> IGetAvengerSuperName(string personid)
         {
+            // returns super hero name of an avenger based on personId passed in
+            // searchs AvengerIdTable to find super hero name
             var table = await this.avengerIdTable.ToListAsync();
 
             AvengerIdTable entry = table.Find(x => x.personId == personid);
@@ -63,6 +72,7 @@ namespace Avengers
 
         public async Task IPostAvengerRecord(AvengerRecordTable avengerRecordTable)
         {
+            // publish a new entry in the record table
             await this.avengerRecordTable.InsertAsync(avengerRecordTable);
         }
 

@@ -41,12 +41,12 @@
     <Compile Include="ResultsPage.xaml.cs">
       <DependentUpon>ResultsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="StatsManager.cs" />
+    <Compile Include="IEasyTableManager.cs" />
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\TableModels.cs" />
-    <Compile Include="Model\DetectionResult.cs" />
+    <Compile Include="Model\EasyTableModels.cs" />
+    <Compile Include="Model\APIModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

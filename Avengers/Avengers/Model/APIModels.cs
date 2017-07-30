@@ -1,45 +1,32 @@
 ﻿
-using System.Text;
-using Newtonsoft.Json;
-using System.Net.Http;
 using System.Collections.Generic;
 
 namespace Avengers.Model
 {
+         /*  Models for interacting with face API*/
+
+   // Response body from Detect Face Method from faceAPI
     public class IDetectionModel
     {
-        //[JsonProperty(PropertyName = "faceId")]
         public string faceId { get; set; }
-
-        //[JsonProperty(PropertyName = "faceRectangle")]
         public faceRectangle faceRectangle { get; set; }
     }
 
+    // Part of response body from Detect Face Method from faceAPI
     public class faceRectangle
     {
-        //[JsonProperty(PropertyName = "top")]
         public int top { get; set; }
-
-        //[JsonProperty(PropertyName = "left")]
         public int left { get; set; }
-
-        //[JsonProperty(PropertyName = "width")]
         public int width { get; set; }
-
-        //[JsonProperty(PropertyName = "height")]
         public int height { get; set; }
     }
 
+    // Request body for Identify Face Method from faceAPI
     public class IDentifyRequestBodyModel
     {
-        [JsonProperty(PropertyName = "personGroupId")]
         public string personGroupId { get; set; }
-
-        [JsonProperty(PropertyName = "faceIds")]
         public List<string> faceIds { get; set; }
-        
-        [JsonProperty(PropertyName = "confidenceThreshold")]
-         public float confidenceThreshold { get; set; }
+        public float confidenceThreshold { get; set; }
 
         public IDentifyRequestBodyModel() { 
             this.faceIds = new List<string>();
@@ -47,16 +34,20 @@ namespace Avengers.Model
         }
     }
 
+    // Reponse body for Identify Face Method from faceAPI
+    public class IDentifyResponseModel
+    {
+        public string faceId { get; set; }
+        public List<Candidate> candidates { get; set; }
+    }
+
+    // Part of reponse body for Identify Face Method from faceAPI
     public class Candidate
     {
         public string personId { get; set; }
         public double confidence { get; set; }
     }
 
-    public class IDentifyModel
-    {
-        public string faceId { get; set; }
-        public List<Candidate> candidates { get; set; }
-    }
+
 }
 

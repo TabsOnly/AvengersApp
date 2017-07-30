@@ -4,9 +4,15 @@
              x:Class="Avengers.ResultsPage">
     <ContentPage.Content>
         <StackLayout Margin="20" HorizontalOptions="Center" VerticalOptions="Center">
+            
             <Label  Text="You sure do look like:" HorizontalTextAlignment="Center"/>
+            
             <Label  Text=" " x:Name="ResultLabel" FontSize="Large" HorizontalTextAlignment="Center"/>
-            <Button Text="SEE RECORDS" Clicked="ICountAvengerRecord" />
+            
+            <ActivityIndicator x:Name="loadingcircle" IsRunning="False" Color="Red" VerticalOptions="End"/>
+            
+            <Button Text="SEE STATS" Clicked="ICountAvengerRecord" />
+            
             <ListView x:Name="CountList" HasUnevenRows="true">
                 <ListView.ItemTemplate>
                     <DataTemplate>
@@ -28,6 +34,7 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+            
         </StackLayout>
 
     </ContentPage.Content>

@@ -7,6 +7,9 @@ using Newtonsoft.Json;
 
 namespace Avengers.Model
 {
+    /*  Models matching Easy Table Schema*/
+
+    // Model to record avenger look-alike
     public class AvengerRecordTable
     {
         [JsonProperty(PropertyName = "Id")]
@@ -19,6 +22,8 @@ namespace Avengers.Model
         public string supername { get; set; }
     }
 
+    // Model for accessing table which stores personids,names
+    // and superhero names for all Avengers
     public class AvengerIdTable
 
     {
@@ -35,7 +40,9 @@ namespace Avengers.Model
         public string supername { get; set; }
     }
 
-    public class AvengerCount
+    // Model for storing a count of how many lookalikes 
+    // are record for a specific avenger name (super hero name)
+    public class IAvengerCount
     {
         public string name { get; set; }
         public int count { get; set; }

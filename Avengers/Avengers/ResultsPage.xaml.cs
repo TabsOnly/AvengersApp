@@ -12,25 +12,37 @@ namespace Avengers
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ResultsPage : ContentPage
     {
-        public string supername;
+        // Which look-alike the person matched to
+        public string superName;
 
         public ResultsPage(string supername)
         { 
             InitializeComponent();
-            this.supername = supername;
+            superName = supername;
+
+            // Displays to the user their lookalike
             ResultLabel.Text = supername;
         }
 
         private async void ICountAvengerRecord(object sender, EventArgs e)
         {
-            var table = await IStatsManager.IAzureManagerInstance.IGetAvengerRecords();
+            // start loading
+            loadingcircle.IsRunning = true;
 
-            List<AvengerCount> countlist = table.GroupBy((g => g.supername), (name, elements) => new AvengerCount
-            {
-                name = supername,
-                count = elements.Distinct().Count()
-            }).ToList();
+            // store table of avenger records in a variable
+            var table = await IEasyTableManager.IAzureManagerInstance.IGetAvengerRecords();
 
+            List<IAvengerCount> countlist = table .GroupBy((g => g.supername),(supername, elements)
+                                                              => new IAvengerCount
+                                                                    {
+                                                                        name = supername,
+                                                                        count = elements.Distinct().Count()
+                                                                    }).ToList();
+
+            // stop loading
+            loadingcircle.IsRunning = false;
+
+            // set returned count list as the source for ListView
             CountList.ItemsSource = countlist;
         }
 
