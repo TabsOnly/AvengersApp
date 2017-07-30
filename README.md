@@ -1,6 +1,6 @@
-# Find Your Avenger Look-Alike App.
+# Find Your Avenger Look-alike App.
 
-This project is intened for MSA Module 2 submission. 
+This project is intended for MSA 2017 Module 2 submission. 
 The app requires the user to take image of a person's face and is returned the closest looking Avenger.The Project meets various submission criteria:
 
 * Microsoft Cognitive Services' FaceAPI is used to detect faces and return matched Avenger. 
